@@ -51,9 +51,8 @@ menorDistancia ((o1, d1, d, v):x) y z
 -- Caso não exista, insere o novo trecho
 insereTrecho :: Trecho ->Origem->Destino->Distancia->Valor->Trecho
 insereTrecho z a b c d
-    | z == [] = [(a,b,c,d)] 
-    | otherwise 
-= z ++ [(a,b,c,d)]
+    | z == [] = [(a,b,c,d)]
+    | otherwise = z ++ [(a,b,c,d)]
  
 -- Gravar trechos no Arquivo
  
@@ -74,11 +73,11 @@ removeTrecho ((origem,dest,dist,val):x)n m
  
 -- 8. Retorna uma tabela mostrando todos os trechos, origens, destinos, distância e valor cadastrados na base de dados de trechos. OK
 cabecalho::String
-cabecalho = "Origem tDestino tDistancia (KM) tValor (R$)\n"
+cabecalho = "Origem \tDestino \tDistancia (KM) \tValor (R$)\n"
  
 listaTrechos :: Trecho->String
 listaTrechos [] = " "
-listaTrechos ((origem,destino,distancia,valor):x) = origem ++  " " ++ destino ++ " "++ show distancia ++ " " ++ show valor ++ "\n" ++ listaTrechos x
+listaTrechos ((origem,destino,distancia,valor):x) = origem ++  "\t" ++ destino ++ "\t"++ show distancia ++ "\t" ++ show valor ++ "\n" ++ listaTrechos x
  
 imprimeTrecho :: Trecho -> IO ()
 imprimeTrecho l = putStr (cabecalho ++ listaTrechos l)
